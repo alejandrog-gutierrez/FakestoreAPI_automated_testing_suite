@@ -75,5 +75,5 @@ def test_empty_request(session,base_url):
 def test_wrong_payload(session,base_url):
     response = user_login(session,base_url,new_product,new_product)
     assert_response(response)
-    assert response.status_code == 400 #Also returns an HTML instead of JSON, though with a very broken body...
+    assert response.status_code == 400
 
