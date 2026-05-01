@@ -118,7 +118,7 @@ Sending a plain string instead of a JSON object as the payload caused the server
 Fetching all users and fetching by ID worked flawlessly. We located and validated John (user ID 1) and his complete data without issues. Valid edge case IDs (1, 2, 9, 10) all returned correct user structures with non-empty fields.
    - **GET** inconsistencies:
 
-      - The id path parameter accepts any data type across all methods. Floats return `200` with a `null` body instead of `400`. Passing "a", True, or None returns an undocumented error message: `{"status":"error","message":"user id should be provided"}`. Empty string "" returns `400` with broken `HTML` instead of `400` in `JSON`.
+      - The id path parameter accepts any data type across all methods. Floats return `200` with a `null` body instead of `400`. Passing "a", True, or None returns an undocumented error message: `{"status":"error","message":"user id should be provided"}`. Empty string "" returns `404` with broken `HTML` instead of `400` in `JSON`.
       - Out-of-range and invalid IDs (-1, 0) return `200` with a `null` body instead of `400`. Out-of-bounds ID (11) returns `200` with `null` instead of `404`.
 
    - **POST** inconsistencies:
@@ -212,7 +212,18 @@ Fetching all products and fetching by ID worked correctly. The price field accep
 ---
 
 ## Documentation
+The following test case and bug report serve as examples of how the full suite would be documented. Each test case and bug found during execution follows this same structure.
+
+- Test cases (example)
+  
 <img width="1287" height="114" alt="image" src="https://github.com/user-attachments/assets/0087ce57-7535-4fa5-a3ec-1659026b1835" />
+
+
+- Bug report (example)
+  
+<img width="702" height="780" alt="image" src="https://github.com/user-attachments/assets/04fdb70c-d2d8-461f-96f5-0150c7e3af74" />
+
+---
 
 
 ## What Would I Improve Next?
