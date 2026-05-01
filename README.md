@@ -111,6 +111,8 @@ The suite ran 198 tests across all four endpoints with no unexpected failures or
 The documentation only states that `400 Bad Request` should be returned with no body — so finding verbose, descriptive error messages was unexpected.
     - Bug — Server crash on string payload (`524 error`)
 Sending a plain string instead of a JSON object as the payload caused the server to return a `524 error` — a Cloudflare timeout indicating the origin server crashed. This is the most critical finding in the suite: a single malformed input to the authentication endpoint — the front door of the platform — is enough to bring it down entirely instead of returning a controlled `400 response`.
+<img width="1832" height="889" alt="image" src="https://github.com/user-attachments/assets/3e2d773f-955d-4624-84cf-97ba75362da6" />
+
 
 - `/users` — Functional on happy path, inconsistent everywhere else.
 Fetching all users and fetching by ID worked flawlessly. We located and validated John (user ID 1) and his complete data without issues. Valid edge case IDs (1, 2, 9, 10) all returned correct user structures with non-empty fields.
@@ -136,10 +138,13 @@ Fetching all users and fetching by ID worked flawlessly. We located and validate
    - **DELETE** inconsistencies:
 
       - Every delete request — valid or not — returns the full user object instead of an empty body, mirroring a GET response.
+      - <img width="1833" height="278" alt="image" src="https://github.com/user-attachments/assets/c34a610d-933c-437c-8d07-5358c2e78d6b" />
       - Invalid IDs (-1, 0) return `200` with a `null` body instead of `400`. Out-of-bounds ID (11) returns `200` with `null` instead of `404` — this case also doubles as attempting to delete a non-existent user.
       - Float ID (25.5) returns `200` with null instead of an error.
       - Passing "a", True, None, or a full payload object surfaces the undocumented error: `{"status":"error","message":"user id should be provided"}` — not necessarily a bug, but completely absent from the documentation.
-      - Empty string "" returns `400` with broken `HTML` instead of `400` IN `JSON`.
+      - Empty string "" returns `404` with broken `HTML` instead of `400` IN `JSON`.
+
+
 - `/products` — Solid happy path, poor input validation.
 Fetching all products and fetching by ID worked correctly. The price field accepts both integers and floats despite the documentation specifying integers only — minor inconsistency but worth noting.
    - `GET` inconsistencies:
@@ -159,7 +164,7 @@ Fetching all products and fetching by ID worked correctly. The price field accep
       - Mirrors `POST` behavior across the board.
       - Notable behavior: the API ignores the id in the request body entirely and uses the path parameter id instead.
       - True and None as path parameter return an undocumented error: `{"status":"error","message":"something went wrong! check your sent data"}`.
-      - Empty string "" as path parameter returns `400` with broken `HTML` instead of `400 JSON`.
+      - Empty string "" as path parameter returns `404` with broken `HTML` instead of `400 JSON`.
 
    - **DELETE** inconsistencies:
 
@@ -167,7 +172,9 @@ Fetching all products and fetching by ID worked correctly. The price field accep
       - Invalid IDs (-1, 0) return `200` with `1` in the body instead of `400`.
       - Non-existent ID (21) doubles as a delete of already-deleted resource — returns `200` with `1` in body instead of `404`.
       - Passing "a", True, None, or a full payload object surfaces an undocumented error: `{"status":"error","message":"product id should be provided"}` — not a bug per se, but entirely undocumented.
-      - Empty string "" returns `400` with broken `HTML` instead of `400` in `JSON`.
+      - Empty string "" returns `404` with broken `HTML` instead of `400` in `JSON`.
+  <img width="1823" height="398" alt="image" src="https://github.com/user-attachments/assets/207caf26-7b04-49d8-9b20-390fd6cd69e1" />
+<img width="1825" height="389" alt="image" src="https://github.com/user-attachments/assets/b35e06b3-8e29-4b02-a148-99fab13b251d" />
     
 - **`/carts` — Functional but incomplete dataset, consistent validation failures**
   Fetching all carts and fetching by ID worked correctly for the first 7 carts. Two undocumented fields were found in the response body (`date` and `__v`) — not a bug, but worth noting. Products inside carts only contain `productId` and `quantity` instead of the full product object described in the documentation.
