@@ -33,6 +33,29 @@ The suite also evaluates how consistently and reliably the API handles the input
 
 ---
 
+## Tools Used
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat&logo=pytest&logoColor=white)
+![Requests](https://img.shields.io/badge/Requests-gray?style=flat)
+![pytest--html](https://img.shields.io/badge/pytest--html-report-orange?style=flat)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white)
+
+---
+
+## Testing Types & Methodology
+
+![Functional](https://img.shields.io/badge/Functional%20Testing-blue)
+![Edge Cases](https://img.shields.io/badge/Edge%20Cases-blueviolet)
+![Boundary](https://img.shields.io/badge/Boundary%20Testing-9cf)
+![Negative](https://img.shields.io/badge/Negative%20Testing-red)
+![Data Validation](https://img.shields.io/badge/Data%20Validation-yellow)
+![Test Case Design](https://img.shields.io/badge/Test%20Case%20Design-lightgrey)
+![Test Automation](https://img.shields.io/badge/Test%20Automation-darkgreen)
+![Test Execution](https://img.shields.io/badge/Test%20Execution-lightblue)
+
+---
+
 ## Scope
 
 ### Included:
@@ -229,29 +252,6 @@ The following test case and bug report serve as examples of how the full suite w
 ## What Would I Improve Next?
 
 The main thing I would improve is the debugging workflow. Manually adding `print(response.text)` to each test in order to inspect server responses was time-consuming given the volume of cases. Going forward, I would implement structured logging or a pytest fixture that automatically captures and logs responses, making it significantly faster to identify issues without having to instrument each test individually.
-
----
-
-## Tools Used
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat&logo=pytest&logoColor=white)
-![Requests](https://img.shields.io/badge/Requests-gray?style=flat)
-![pytest--html](https://img.shields.io/badge/pytest--html-report-orange?style=flat)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white)
-
----
-
-## Testing Types & Methodology
-
-![Functional](https://img.shields.io/badge/Functional%20Testing-blue)
-![Edge Cases](https://img.shields.io/badge/Edge%20Cases-blueviolet)
-![Boundary](https://img.shields.io/badge/Boundary%20Testing-9cf)
-![Negative](https://img.shields.io/badge/Negative%20Testing-red)
-![Data Validation](https://img.shields.io/badge/Data%20Validation-yellow)
-![Test Case Design](https://img.shields.io/badge/Test%20Case%20Design-lightgrey)
-![Test Automation](https://img.shields.io/badge/Test%20Automation-darkgreen)
-![Test Execution](https://img.shields.io/badge/Test%20Execution-lightblue)
 
 ---
 
