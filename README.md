@@ -211,6 +211,10 @@ Fetching all products and fetching by ID worked correctly. The price field accep
 
 ---
 
+## Documentation
+<img width="1287" height="114" alt="image" src="https://github.com/user-attachments/assets/0087ce57-7535-4fa5-a3ec-1659026b1835" />
+
+
 ## What Would I Improve Next?
 
 The main thing I would improve is the debugging workflow. Manually adding `print(response.text)` to each test in order to inspect server responses was time-consuming given the volume of cases. Going forward, I would implement structured logging or a pytest fixture that automatically captures and logs responses, making it significantly faster to identify issues without having to instrument each test individually.
