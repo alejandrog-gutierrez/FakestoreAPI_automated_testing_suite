@@ -104,10 +104,16 @@ The suite is organized in a modular way to keep responsibilities separated and m
 
 ---
 
-## Key Decisions
+## Testing Approach
 
-- **Retrieval was the top priority** (`GET`) — ensuring the system returns valid, well-structured data is the foundation of the suite. Responses were strictly validated against the documented API contract: if the structure, fields, or data types didn't match what the API promises, the test fails.
-- **Creation was equally prioritized** (`POST`) — the contract must be strict in both directions. The API should accept and reflect back data exactly as documented, no more, no less.
+Before writing any automated test, each endpoint was manually explored using Postman to understand the API's behavior, validate expected responses, and identify edge cases worth automating. This manual phase informed the test design decisions documented in the Key Decisions section.
+
+---
+
+
+## Key Decisions
+- **Retrieval was the top priority (`GET`)** — ensuring the system returns valid, well-structured data is the foundation of the suite. Manual exploration in Postman confirmed that response structure inconsistencies were the most frequent issue across endpoints, which reinforced this priority.
+- **Creation was equally prioritized (`POST`)** — the contract must be strict in both directions. Postman testing revealed early on that the API accepted malformed payloads without complaint, making input validation a key focus for this section.
 - **Update operations were included** (`PUT`) but with more flexibility, as behavior showed discrepancies during testing. See the Results section for details.
 - **Delete operations were tested with less rigor**, as the endpoint logic was straightforward — but it produced some of the most interesting and unexpected behaviors observed in the suite. See the Results section for details.
 
