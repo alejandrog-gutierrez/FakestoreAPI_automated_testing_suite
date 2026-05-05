@@ -128,6 +128,13 @@ Before writing any automated test, each endpoint was manually explored using Pos
 ![Errors](https://img.shields.io/badge/Errors-0-brightgreen)
 ![Duration](https://img.shields.io/badge/Duration-3m%2001s-lightgrey)
 
+| Severity | Count | Description |
+|---|---|---|
+| Critical | 1 | Server crash (524) on string payload to `/auth/login` |
+| Major | 8 | DELETE returning full object instead of empty body (across all endpoints); POST/PUT accepting invalid, incomplete, and wrong-schema payloads with 201/200; invalid IDs returning 200 with null instead of 400/404; broken HTML responses instead of JSON for junk data |
+| Minor | 3 | Login returning 201 instead of documented 200; `/users` PUT using body ID instead of path parameter; float IDs treated as valid integers |
+| Informational | 4 | Undocumented error messages across endpoints; undocumented fields (`date`, `__v`) in carts; only 7 carts exist despite docs claiming 20; `price` field accepting integers despite docs specifying floats only |
+
 The suite ran 198 tests across all four endpoints with no unexpected failures or errors. The 117 expected failures (xfail) were intentionally marked to document known API limitations and inconsistencies — every test under xfail failed due to discrepancies in status codes, response formats, or unexpected server behavior. Rather than leaving them as hard failures that block the suite, xfail was used to keep the run clean while preserving full visibility into what broke and why, with each case documented individually in the report to provide context behind the decision.
 
 ### Bugs & Findings
